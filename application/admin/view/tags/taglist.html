@@ -1,0 +1,35 @@
+{layout name="public:layout" /}
+
+<h4 class="text-center text-success">用户列表</h4>
+<table class="table table-default table-hover text-center">
+
+    <tr>
+        <td>ID</td>
+        <td>标签名</td>
+
+        <td colspan="2">操作</td>
+    </tr>
+
+   {volist name='tags' id='tag'}
+    <tr>
+        <td>{$tag.id}</td>
+        <td>{$tag.tag_name}</td>
+
+        <td><a href="">编辑</a> </td>
+        <td><a href="javascript:void(0);" onclick="dele('{$tag.id}');">删除</a> </td>
+    </tr>
+    {/volist}
+
+</table>
+
+<!--分类添加操作-->
+<a class="btn btn-info" style="" href="{:url('tags/tagadd')}" role="button">添加标签</a>
+
+<script>
+    function dele(id)
+    {
+        if(confirm('您真的要删除吗?') == true){
+            window.location.href='/myface/public/admin.php/tags/del/id/'+id;
+        }
+    }
+</script>

@@ -1,0 +1,53 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tp5-demo wangEditor的集成</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/myface/public/static/dist/css/wangEditor.min.css">
+    <style>
+        body{
+            background: #f8f8f8;
+        }
+        .header{
+            background: #fff;
+            padding:15px;
+            font-size: 20px;
+            font-weight: 600;
+            border-bottom: 1px solid #e6e6e6;
+            margin-bottom: 50px;
+        }
+        footer{
+            background: #fff;
+            padding:30px 0;
+            text-align: center;
+            position: fixed;
+        }
+        .row{
+            margin-top: 150px;
+            float: left;
+        }
+        .row1{
+            width: 200px;
+
+            margin-left: 300px;
+        }
+        .row2{
+
+            width: 1000px;
+            margin-left: 150px;
+        }
+    </style>
+</head>
+<body>
+{include file="public:nav" /}
+<div style="width: 80%;margin: auto;height: 1000px;">
+    {include file="public:left" /}
+    <div class="row row2">
+        {__CONTENT__}
+    </div>
+</div>
+</body>
+</html>

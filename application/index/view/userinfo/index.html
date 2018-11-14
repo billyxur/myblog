@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf8">
+    <title>首页_个人博客</title>
+    <meta name="keywords" content="个人博客" />
+    <meta name="description" content="个人博客。" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/myface/public/static/js/jquery-2.1.1.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/myface/public/static/css/base.css" rel="stylesheet">
+    <link href="/myface/public/static/css/index.css" rel="stylesheet">
+    <link href="/myface/public/static/css/m.css" rel="stylesheet">
+
+
+
+    <!--[if lt IE 9]>
+    <script src="/myface/public/static/js/modernizr.js"></script>
+    <![endif]-->
+
+    <script src="/myface/public/static/js/modernizr.js"></script>
+    <![endif]-->
+    <script>
+        window.onload = function ()
+        {
+            var oH2 = document.getElementsByTagName("h2")[0];
+            var oUl = document.getElementsByTagName("ul")[0];
+            oH2.onclick = function ()
+            {
+                var style = oUl.style;
+                style.display = style.display == "block" ? "none" : "block";
+                oH2.className = style.display == "block" ? "open" : ""
+            }
+        }
+    </script>
+    <style>
+        body{
+            background-color: white;
+            background-image: url("/myface/public/static/images/ti.jpg");
+        }
+       .blogs li{
+           margin-left: 20px;
+           padding: 0px;
+           margin-top: 20px;
+       }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        img {
+            border-radius: 5px 5px 0 0;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+
+
+</head>
+<body>
+<header>
+    <div class="tophead">
+        <div class="logo"><a href="/">许先生个人博客</a></div>
+        <div id="mnav">
+            <h2><span class="navicon"></span></h2>
+            <ul>
+                <li><a href="{:url('index/index')}">网站首页</a></li>
+                <li><a href="{:url('userinfo/index')}">关于我</a></li>
+                {volist name="cates" id="cate"}
+                <li><a href="{:url('index/index',['id'=>$cate.id])}">{$cate.name}</a></li>
+                {/volist}
+                <li><a href="{:url('comments/index')}">留言</a></li>
+            </ul>
+        </div>
+        <nav class="topnav" id="topnav">
+            <ul>
+                <li><a href="{:url('index/index')}">网站首页</a></li>
+                <li><a href="{:url('userinfo/index')}">关于我</a></li>
+                {volist name="cates" id="cate"}
+                <li><a href="{:url('index/index',['id'=>$cate.id])}">{$cate.name}</a></li>
+                {/volist}
+                <li><a href="{:url('comments/index')}">留言</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<article>
+
+    <div class="blogs" style="width: 100%">
+
+
+        <li style="border-radius: 30px;width: 65%;float: left;height: 600px;">
+            <div style="border-radius: 10px;padding: 30px;border: none;background-color: #F0F0F0;height: 100%">
+                <h3 class="blogtitle" style="line-height: 20px;">教育信息<a href=""></a></h3>
+                <span>成都西华大学 本科 信息与计算科学专业（2015-2019）</span>
+
+
+
+            </div>
+        </li>
+
+        <li style="border-radius: 20px;float: left;width: 20%">
+            <div class="card">
+                <img src="https://static.runoob.com/images/mix/img_avatar.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>billyxu</b></h4>
+                    <p>一个大四应届生</p>
+                </div>
+            </div>
+        </li>
+
+
+
+    </div>
+
+
+</article>
+
+<div class="blank"></div>
+<footer style="position:fixed;bottom:0;">
+    <p>Design by <a href="/">billyxu个人博客</a> <a href="/"></a></p>
+</footer>
+<script src="/myface/public/static/js/nav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+{layout name="public:layout" /}
+<h4 class="text-center text-success">分类管理</h4>
+<table class="table table-default table-hover text-center">
+
+    <tr>
+        <td>ID</td>
+        <td>栏目名称</td>
+        <td>排序</td>
+        <td>状态</td>
+        <td>创建时间</td>
+        <td colspan="2">操作</td>
+    </tr>
+
+    {volist name="cates" id="cate" empty="$empty"}
+    <tr>
+        <td>{$cate.id}</td>
+        <td>{$cate.name}</td>
+        <td>{$cate.sort}</td>
+        {eq name="$cate.status" value="1"}
+        <td style="color: forestgreen">显示</td>
+        {else/}
+        <td style="color: gray">隐藏</td>
+        {/eq}
+        <td>{$cate.created_at}</td>
+
+        <td><a href="{:url('cate/cateedit',['id'=>$cate.id])}">编辑</a> </td>
+        <td><a href="javascript:void(0);" onclick="dele('{$cate.id}');">删除</a> </td>
+    </tr>
+    {/volist}
+
+
+</table>
+
+<!--分类添加操作-->
+<a class="btn btn-info" style="" href="{:url('cate/cateadd')}" role="button">添加分类</a>
+<script>
+    function dele(id) {
+        if(confirm("是否要删除") == true ){
+            window.location.href = '/myface/public/admin.php/cate/catedel/id/'+id;
+        }
+    }
+</script>

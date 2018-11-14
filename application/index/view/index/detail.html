@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf8">
+    <title>首页_个人博客</title>
+    <meta name="keywords" content="个人博客" />
+    <meta name="description" content="个人博客。" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    {load href='/myface/public/static/css/base.css' /}
+    {load href='/myface/public/static/css/index.css' /}
+    {load href='/myface/public/static/css/m.css' /}
+    <script src="/myface/public/static/js/jquery-2.1.1.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/myface/public/static/js/modernizr.js"></script>
+    <![endif]-->
+    <script>
+        window.onload = function ()
+        {
+            var oH2 = document.getElementsByTagName("h2")[0];
+            var oUl = document.getElementsByTagName("ul")[0];
+            oH2.onclick = function ()
+            {
+                var style = oUl.style;
+                style.display = style.display == "block" ? "none" : "block";
+                oH2.className = style.display == "block" ? "open" : ""
+            }
+        }
+    </script>
+
+    <style>
+        body{
+            background-image: url("/myface/public/static/images/ba2.png");
+        }
+        .about{
+            border-radius: 10px;background-color: #ffdab9
+        }
+        .paihang{
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="tophead">
+        <div class="logo"><a href="/">许先生个人博客</a></div>
+        <div id="mnav">
+            <h2><span class="navicon"></span></h2>
+            <ul>
+                <li><a href="{:url('index/index')}">网站首页</a></li>
+                <li><a href="{:url('userinfo/index')}">关于我</a></li>
+                {volist name="cates" id="cate"}
+                <li><a href="{:url('index/index',['id'=>$cate.id])}">{$cate.name}</a></li>
+                {/volist}
+                <li><a href="{:url('comments/index')}">留言</a></li>
+            </ul>
+        </div>
+        <nav class="topnav" id="topnav">
+            <ul>
+                <li><a href="{:url('index/index')}">网站首页</a></li>
+                <li><a href="{:url('userinfo/index')}">关于我</a></li>
+                {volist name="cates" id="cate"}
+                <li><a href="{:url('index/index',['id'=>$cate.id])}">{$cate.name}</a></li>
+                {/volist}
+                <li><a href="{:url('comments/index')}">留言</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<article>
+
+    <div class="infos" style="border-radius: 15px">
+        <div class="newsview">
+            <h3 class="news_title">{$post.title}</h3>
+            <div class="news_author"><span class="au01"><a href="mailto:dancesmiling@qq.com">{$post.user_id|getUserName}</a></span><span class="au02">{$post.created_at}</span><span class="au03">共<b><script src="/e/public/ViewClick/?classid=5&amp;id=816&amp;addclick=1"></script>{$post.pv}</b>人围观</span></div>
+            <div class="tags"><a href="" target="_blank">个人博客</a> &nbsp; {$post.id|getTags2}</div>
+            <div class="news_about"><strong>简介</strong>{$post.introduction}</div>
+            <div class="news_infos">
+                {$post.content|htmlspecialchars_decode}
+            </div>
+
+        </div>
+        <div class="share"> </div>
+        <div class="nextinfo">
+
+        </div>
+
+        <div class="news_pl">
+            <h2>文章评论</h2>
+            <ul>
+                <div class="gbko"> </div>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="sidebar">
+
+        <div class="search" style="border-radius: 15px">
+            <form class="navbar-form navbar-left" action="{:url('index/index')}" method="get">
+                <div class="form-group">
+                    <input type="text" name="keywords" class="form-control" placeholder="请输入关键字">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+        </div>
+
+        <!--<div class="lmnav">-->
+            <!--<h2 class="hometitle">栏目导航</h2>-->
+            <!--<ul class="navbor">-->
+                <!--<li><a href="#">关于我</a></li>-->
+                <!--<li><a href="share.html">模板分享</a>-->
+                    <!--<ul>-->
+                        <!--<li><a href="list.html">个人博客模板</a></li>-->
+                        <!--<li><a href="#">HTML5模板</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li><a href="list.html">学无止境</a>-->
+                    <!--<ul>-->
+                        <!--<li><a href="list.html">学习笔记</a></li>-->
+                        <!--<li><a href="#">HTML5+CSS3</a></li>-->
+                        <!--<li><a href="#">网站建设</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li><a href="#">慢生活</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        <div class="paihang">
+
+            <h2 class="hometitle">点击排行</h2>
+            <ul>
+                {volist name="hotPostsList" id="hot"}
+                <li><b><a href="{:url('index/detail',['id'=>$hot.id])}" target="_blank">{$hot.title}</a></b>
+                    <p>{$hot.content|getArtContent}</p>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+
+
+
+
+    </div>
+
+</article>
+<footer>
+    <p>Design by <a href="/">billyxu个人博客</a> </p>
+</footer>
+<script src="/myface/public/static/js/nav.js"></script>
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(function() {
+        var elm = jQuery('#left_flow2');
+        var startPos = jQuery(elm).offset().top;
+        jQuery.event.add(window, "scroll", function() {
+            var p = jQuery(window).scrollTop();
+            jQuery(elm).css('position',((p) > startPos) ? 'fixed' : '');
+
+            jQuery(elm).css('top',((p) > startPos) ? '0' : '');
+        });
+    });
+</script>
+</body>
+</html>

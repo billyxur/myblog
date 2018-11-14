@@ -1,0 +1,49 @@
+{layout name="public:layout2" /}
+<div class="row3">
+    <div class="col-sm-8 blog-main">
+        <form role="form" action="{:url('posts/doinsert')}" method="post">
+            <div class="form-group">
+                <label>标题</label>
+                <input name="title" type="text" class="form-control" placeholder="这里是标题" value="">
+            </div>
+            <div class="form-group">
+                <label>简介</label>
+                <input name="introduction" type="text" class="form-control" placeholder="这里是简介" value="">
+            </div>
+            <textarea id="content" name="content" style="height: 500px">
+                    <p></p>
+                </textarea>
+
+            <div class="form-group">
+                <label for="" class="control-label">分类</label>
+                <select name="cate_id" id="" class="form-control">
+                    {volist name="cateList" id="cate"}
+                    <option value="{$cate.id}">{$cate.name}</option>
+                    {/volist}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="control-label">标签</label>
+                {volist name='tags' id='tag'}
+                <input type="checkbox" name="manage[]" value="{$tag.id}" title="" >{$tag.tag_name}
+                {/volist}
+            </div>
+
+            <input type="hidden" name="user_id" value="{$Think.session.admin_id}">
+            <button type="submit" class="btn btn-default">提交</button>
+        </form>
+        <br>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/myface/public/static/dist/js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/myface/public/static/dist/js/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var editor = new wangEditor('content');
+    editor.config.uploadImgUrl = '/myface/public/uploads/';
+    editor.config.uploadImgUrl = '{:url("index/upload")}';
+    editor.config.uploadImgFileName = 'FileName';
+    editor.create();
+</script>

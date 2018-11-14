@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf8">
+    <title>首页_个人博客</title>
+    <meta name="keywords" content="个人博客" />
+    <meta name="description" content="个人博客。" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/myface/public/static/js/jquery-2.1.1.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/myface/public/static/css/base.css" rel="stylesheet">
+    <link href="/myface/public/static/css/index.css" rel="stylesheet">
+    <link href="/myface/public/static/css/m.css" rel="stylesheet">
+
+
+
+    <!--[if lt IE 9]>
+    <script src="/myface/public/static/js/modernizr.js"></script>
+    <![endif]-->
+
+    <script>
+        window.onload = function ()
+        {
+            var oH2 = document.getElementsByTagName("h2")[0];
+            var oUl = document.getElementsByTagName("ul")[0];
+            oH2.onclick = function ()
+            {
+                var style = oUl.style;
+                style.display = style.display == "block" ? "none" : "block";
+                oH2.className = style.display == "block" ? "open" : ""
+            }
+        }
+    </script>
+
+    <style>
+        body{
+            background-color: white;
+        }
+        .about{
+            border-radius: 10px;background-color: #ffdab9
+        }
+        .paihang{
+            border-radius: 10px;
+        }
+        .cloud ul a{
+            line-height: 19px;
+        }
+    </style>
+
+
+</head>
+<body>
+<header>
+    <div class="tophead" style="background-color: #EF9A9A;border-radius: 10px;margin-bottom: 20px;margin-top: 10px">
+        <div class="logo"><a href="/">许先生个人博客</a></div>
+        <div id="mnav">
+            <h2><span class="navicon"></span></h2>
+            <ul>
+                <li><a href="{:url('index/index')}">网站首页</a></li>
+                <li><a href="{:url('userinfo/index')}">关于我</a></li>
+                {volist name="cates" id="cate"}
+                <li><a href="{:url('index/index',['id'=>$cate.id])}">{$cate.name}</a></li>
+                {/volist}
+                <li><a href="{:url('comments/index')}">留言</a></li>
+            </ul>
+        </div>
+        <nav class="topnav" id="topnav">
+            <ul>
+                <li><a href="{:url('index/index')}">网站首页</a></li>
+                <li><a href="{:url('userinfo/index')}">关于我</a></li>
+                {volist name="cates" id="cate"}
+                <li><a href="{:url('index/index',['id'=>$cate.id])}">{$cate.name}</a></li>
+                {/volist}
+                <li><a href="{:url('comments/index')}">留言</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<article>
+
+    <div class="blogs" style="margin-left: 5px">
+
+        {volist name="posts" id="post" empty="$empty" }
+        <li style="border-radius: 10px;background-color: #F0F0F0;width: 97%">
+           <div style="border-radius: 10px;padding: 30px;border: none;background-color: #E0E0E0">
+               <h3 class="blogtitle" style="line-height: 20px"><a href="{:url('index/detail',['id'=>$post.id])}">{$post.title}</a></h3>
+               <div class="bloginfo" style="margin-top: 22px">
+                   <p>{$post.introduction|getArtContent}</p>
+               </div>
+               <div class="autor"><span class="lm"><a href="/" title="" target="_blank" class="classname">{$post.cate_id|getCateName}</a></span><span class="dtime">{$post.created_at}
+            </span><span class="viewnum">浏览（<a href="/">{$post.pv}</a>）</span></div>
+               <div class="tags">
+                    {$post.id|getTags}
+               </div>
+           </div>
+        </li>
+        {/volist}
+        <div class="text-center" style="opacity: 0.6" >
+            {$posts->render()}
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="about" >
+            <div class="avatar"> <img src="/myface/public/static/images/hua.jpg" alt=""> </div>
+            <p class="abname">billyxu | 许先生</p>
+            <p class="abposition">大四无业游民</p>
+            <div class="abtext"> 热爱技术，可惜找不到实习。 </div>
+        </div>
+        <div class="search" style="border-radius: 10px">
+            <form class="navbar-form navbar-left" action="{:url('index/index')}" method="get">
+                <div class="form-group">
+                    <input type="text" name="keywords" class="form-control" placeholder="请输入关键字">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+        </div>
+
+
+        <div class="cloud">
+            <h2 class="hometitle">标签云</h2>
+            <ul>
+                <a href="/">陌上花开</a>
+                {foreach $tags as $tag}
+                <a href="{:url('index/index',['tag_id'=>$tag.id])}">{$tag.tag_name}</a>
+                {/foreach}
+            </ul>
+        </div>
+
+        <div class="paihang" style="border-radius: 10px;">
+            <h2 class="hometitle">点击排行</h2>
+            <ul>
+                {volist name="hotPostsList" id="hot"}
+                <li><b><a href="{:url('index/detail',['id'=>$hot.id])}" target="_blank">{$hot.title}</a></b>
+                    <p>{$hot.content|getArtContent}</p>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+
+        <div class="paihang" style="border-radius: 10px">
+            <h2 class="hometitle">站长推荐</h2>
+            <ul>
+                <!--<li><b><a href="/download/div/2015-04-10/746.html" target="_blank">【活动作品】柠檬绿兔小白个人博客模板30...</a></b>-->
+                    <!--<p><i><img src="images/t02.jpg"></i>展示的是首页html，博客页面布局格式简单，没有复杂的背景，色彩局部点缀，动态的幻灯片展示，切换卡，标...</p>-->
+                <!--</li>-->
+               <!---->
+
+            </ul>
+        </div>
+        <div class="links">
+            <h2 class="hometitle">友情链接</h2>
+            <ul>
+                <!--<li><a href="http://www.yangqq.com" title="杨青个人博客">杨青个人博客</a></li>-->
+                <!--<li><a href="http://www.yangqq.com" title="杨青个人博客">杨青个人博客</a></li>-->
+                <!--<li><a href="http://www.yangqq.com" title="杨青个人博客">杨青个人博客</a></li>-->
+            </ul>
+        </div>
+        <div class="weixin">
+            <h2 class="hometitle">官方微信</h2>
+            <ul>
+                <!--<img src="/myface/public/images/wx.jpg">-->
+
+            </ul>
+        </div>
+    </div>
+</article>
+<div class="blank"></div>
+<footer>
+    <p>Design by <a href="/">billyxu个人博客</a> <a href="/"></a></p>
+</footer>
+<script src="/myface/public/static/js/nav.js"></script>
+</body>
+</html>

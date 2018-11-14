@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .row{
+            width: 350px;
+            margin: auto;
+            margin-top: 250px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="row">
+        <div style="margin-left: 50px;margin-bottom: 70px">
+            <h1>个人博客登陆</h1>
+        </div>
+        <form class="form-horizontal" action="{:url('user/checkLogin')}" method="post" id="login">
+
+
+            <div class="form-group">
+                <label for="inputEmail2" class="col-sm-2 control-label">邮箱:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="email" class="form-control" id="inputEmail2" placeholder="Email">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputPassword4" class="col-sm-2 control-label">密码:</label>
+                <div class="col-sm-10">
+                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" id="submit">登录</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div  style="margin-left: 49%;">
+        <a href="">注册</a>
+    </div>
+</body>
+</html>

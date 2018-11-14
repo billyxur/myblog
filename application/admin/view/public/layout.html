@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .row{
+            margin-top: 100px;
+            float: left;
+        }
+        .row1{
+            width: 10%;
+
+            margin-left: 50px;
+        }
+        .row2{
+
+            width: 80%;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+{include file="public:nav" /}
+<div style="width: 80%;margin: auto;height: 1000px;">
+    {include file="public:left" /}
+    <div class="row row2">
+        {__CONTENT__}
+    </div>
+</div>
+</body>
+</html>
